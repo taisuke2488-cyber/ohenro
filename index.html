@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お遍路コネクト (Ohenro Connect) | 四国巡礼コミュニティ</title>
+    <meta name="description" content="四国八十八ヶ所巡礼者のための多言語自動翻訳機能付きコミュニティ掲示板。巡礼の記録や質問、宿情報を世界中の人と共有しましょう。">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header>
+        <div class="container nav-container">
+            <div class="brand">
+                <i data-lucide="map-pin"></i>
+                Ohenro <span>Connect</span>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="btn btn-icon" title="テーマ切り替え">
+                    <i data-lucide="moon" id="theme-icon"></i>
+                </button>
+                <div class="user-profile" id="user-profile-btn">
+                    <img src="assets/default_avatar.png" alt="Profile" class="avatar-sm">
+                    <span id="current-user-name">お遍路さん</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="fade-in">言葉の壁を越えて、<br>巡礼の絆を。</h1>
+                <p class="fade-in" style="animation-delay: 0.2s;">四国八十八ヶ所巡礼者のための多言語自動翻訳掲示板</p>
+                <div class="mt-40 fade-in" style="animation-delay: 0.4s;">
+                    <button id="open-post-modal" class="btn btn-primary">
+                        <i data-lucide="plus-circle" style="margin-right: 8px;"></i> 投稿する
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Map Visualization -->
+            <section class="mb-20">
+                <h3 class="mb-20"><i data-lucide="map"></i> 巡礼進捗マップ</h3>
+                <div id="ohenro-map" class="map-container">
+                    <div class="map-line"></div>
+                    <!-- Checkpoints will be rendered here by JS -->
+                    <div class="skeleton" style="width: 100%; height: 20px;"></div>
+                </div>
+            </section>
+
+            <!-- Forum Controls -->
+            <div class="forum-header mt-40">
+                <h2><i data-lucide="message-square"></i> 掲示板</h2>
+                <div class="nav-actions">
+                    <select id="category-filter" class="glass-panel" style="padding: 8px 15px; border-radius: 8px;">
+                        <option value="all">すべてのカテゴリ</option>
+                        <option value="report">巡礼記録</option>
+                        <option value="question">質問</option>
+                        <option value="lodging">宿情報</option>
+                        <option value="general">雑談</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Thread Grid -->
+            <div id="thread-grid" class="thread-grid">
+                <!-- Thread cards will be rendered here by JS -->
+                <div class="thread-card skeleton" style="height: 400px;"></div>
+                <div class="thread-card skeleton" style="height: 400px;"></div>
+                <div class="thread-card skeleton" style="height: 400px;"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Post Modal -->
+    <div id="post-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3>新しい投稿</h3>
+                <button id="close-modal" class="btn" style="background: none; color: var(--text-muted);"><i data-lucide="x"></i></button>
+            </div>
+            <form id="post-form">
+                <div class="mb-20">
+                    <input type="text" id="post-title" placeholder="タイトル" class="glass-panel" style="width: 100%; padding: 12px; border-radius: 8px; font-size: 1.1rem;" required>
+                </div>
+                <div class="mb-20">
+                    <select id="post-category" class="glass-panel" style="width: 100%; padding: 12px; border-radius: 8px;" required>
+                        <option value="report">巡礼記録</option>
+                        <option value="question">質問</option>
+                        <option value="lodging">宿情報</option>
+                        <option value="general">雑談</option>
+                    </select>
+                </div>
+                <div class="mb-20">
+                    <textarea id="post-content" placeholder="本文（日本語、英語、何語でもOK！）" class="glass-panel" style="width: 100%; height: 150px; padding: 12px; border-radius: 8px; resize: vertical;" required></textarea>
+                </div>
+                <div class="mb-20">
+                    <label class="btn" style="border: 1px dashed var(--border-color); width: 100%; justify-content: center; background: var(--bg-main);">
+                        <i data-lucide="image" style="margin-right: 8px;"></i> 写真をアップロード
+                        <input type="file" id="post-image" accept="image/*" style="display: none;">
+                    </label>
+                    <div id="image-preview" style="margin-top: 10px; display: none;">
+                        <img src="" alt="Preview" style="max-width: 100%; border-radius: 8px;">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">投稿を公開する</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/storage.js"></script>
+    <script src="js/translator.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
