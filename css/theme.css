@@ -1,0 +1,62 @@
+:root {
+    /* Color Palette - Light Mode */
+    --primary-color: #004d99; /* Seto Inland Sea Blue */
+    --primary-hover: #003366;
+    --secondary-color: #e60012; /* Vermilion (Shuin/Vermilion Gate) */
+    --secondary-hover: #b3000e;
+    --accent-color: #f1c40f; /* Golden Staff (Kongozue) */
+    
+    --bg-main: #f8f9fa;
+    --bg-card: #ffffff;
+    --bg-header: rgba(255, 255, 255, 0.8);
+    
+    --text-main: #2c3e50;
+    --text-muted: #7f8c8d;
+    --text-light: #ffffff;
+    
+    --border-color: #e0e0e0;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+    
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    
+    --transition-speed: 0.3s;
+}
+
+[data-theme="dark"] {
+    /* Color Palette - Dark Mode */
+    --primary-color: #3399ff;
+    --primary-hover: #66b3ff;
+    --secondary-color: #ff4d4d;
+    --secondary-hover: #ff6666;
+    
+    --bg-main: #121212;
+    --bg-card: #1e1e1e;
+    --bg-header: rgba(18, 18, 18, 0.8);
+    
+    --text-main: #e0e0e0;
+    --text-muted: #a0a0a0;
+    --text-light: #ffffff;
+    
+    --border-color: #333333;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,0.6);
+    
+    --glass-bg: rgba(30, 30, 30, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
